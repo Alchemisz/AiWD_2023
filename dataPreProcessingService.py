@@ -29,4 +29,6 @@ class DataPreProcessingService:
             for j in range(self.instances_count):
                 current_variable_value = data_set[j][i]
                 if current_variable_value == '?':
-                    data_set[j][i] = self.avg_variable_values[i]
+                    data_set[j][i] = float(self.avg_variable_values[i])
+                else:
+                    data_set[j][i] = float(data_set[j][i])

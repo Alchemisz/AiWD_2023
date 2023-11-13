@@ -39,7 +39,11 @@ class BaseStatisticCollector:
             for j in range(self.instances_count):
                 current_variable_value = float(data_set[j][i])
                 sum += pow((current_variable_value - current_variable_avg), 2)
-            self.__add_standard_deviation_variable_value(round(math.sqrt(sum / self.instances_count), 3))
+            #self.__add_standard_deviation_variable_value(round(math.sqrt(sum / self.instances_count), 3))
+
+            standard_deviation_variable_value = round(math.sqrt(sum / self.instances_count), 3)
+            self.__add_standard_deviation_variable_value(
+                0.001 if standard_deviation_variable_value == 0.0 else standard_deviation_variable_value)  # TODO
 
     def __add_min_variable_value(self, min_variable_value):
         self.min_variable_values.append(min_variable_value)

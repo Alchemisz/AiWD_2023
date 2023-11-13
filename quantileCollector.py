@@ -34,8 +34,11 @@ class QuartileCollector:
 
     def __calculate_inter_quartile_ranges(self):
         for i in range(len(self.firstQuartileVariableValues)):
+            inter_quartile_range = round(self.thirdQuartileVariableValues[i] - self.firstQuartileVariableValues[i], 3)
+            # self.__add_inter_quartile_range(inter_quartile_range)
+
             self.__add_inter_quartile_range(
-                round(self.thirdQuartileVariableValues[i] - self.firstQuartileVariableValues[i], 3))
+                0.001 if inter_quartile_range == 0.0 else inter_quartile_range)  # TODO
 
     def __add_first_quartile(self, first_quartile_value):
         self.firstQuartileVariableValues.append(first_quartile_value)
