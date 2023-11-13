@@ -30,13 +30,17 @@ class LinearCorrelationCollector:
             sum += x_variable_difference * y_variable_difference
         return sum / instances_count
 
-    def show_plot(self):
+    def show_plot(self, column_names: list[str]):
         fig, ax = plt.subplots()
         im = ax.imshow(self.correlation_variable_stairs)
 
         # Show all ticks and label them with the respective list entries
-        ax.set_xticks(np.arange(len(self.correlation_variable_stairs)))
-        ax.set_yticks(np.arange(len(self.correlation_variable_stairs)))
+        ax.set_xticks(np.arange(len(self.correlation_variable_stairs)), labels=column_names)
+        ax.set_yticks(np.arange(len(self.correlation_variable_stairs)), labels=column_names)
+
+        # Rotate the tick labels and set their alignment.
+        plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
+                 rotation_mode="anchor")
 
         # Loop over data dimensions and create text annotations.
         for i in range(len(self.correlation_variable_stairs)):
