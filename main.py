@@ -1,15 +1,12 @@
 import csv
 
 from baseStatisticCollector import BaseStatisticCollector
+from dataPreProcessingService import DataPreProcessingService
 from distantPointsCollector import DistantPointsCollector
 from linearCorrelationCollector import LinearCorrelationCollector
+from linearRegressionCollector import LinearRegressionCollector
 from quantileCollector import QuartileCollector
 
-import matplotlib.pyplot as plt
-import numpy as np
-
-import matplotlib
-import matplotlib as mpl
 
 def main():
     file = open('wine.csv')
@@ -22,6 +19,10 @@ def main():
         data_set.append(row)
 
     file.close()
+
+    print("--------------------1----------------------")
+    data_pre_processing_service = DataPreProcessingService(len(data_set[0]), len(data_set), )
+    data_pre_processing_service.pre_process_data_set(data_set)
 
     print("--------------------2----------------------")
     base_statistic_collector = BaseStatisticCollector()
@@ -68,32 +69,19 @@ def main():
         base_statistic_collector.standard_deviation_variable_values
     )
     linear_correlation_collector.calculate_linear_correlation(data_set)
+    linear_correlation_collector.show_plot()
 
     for row in linear_correlation_collector.correlation_variable_stairs:
         print(row)
 
-    # fig, ax = plt.subplots()
-    # im = ax.imshow(linear_correlation_collector.correlation_variable_stairs)
-    #
-    # # Show all ticks and label them with the respective list entries
-    # ax.set_xticks(np.arange(len(linear_correlation_collector.correlation_variable_stairs)))
-    # ax.set_yticks(np.arange(len(linear_correlation_collector.correlation_variable_stairs)))
-    #
-    # # Loop over data dimensions and create text annotations.
-    # for i in range(len(linear_correlation_collector.correlation_variable_stairs)):
-    #     for j in range(len(linear_correlation_collector.correlation_variable_stairs[i])):
-    #         text = ax.text(j, i, linear_correlation_collector.correlation_variable_stairs[i, j],
-    #                        ha="center", va="center", color="w")
-    #
-    # ax.set_title("Harvest of local farmers (in tons/year)")
-    # fig.tight_layout()
-    # plt.show()
-    #
+    print("---------------------6---------------------")
+    linear_regression_collector = LinearRegressionCollector(base_statistic_collector.avg_variable_values)
+    linear_regression_collector.calculate_linear_regression(data_set)
 
-
-
-
-    print("---------------------5---------------------")
+    for row in linear_regression_collector.linear_regression_coefficient_variable_stairs:
+        for element in row:
+            print(str(element), end="\t\t\t")
+        print()
 
 
 if __name__ == "__main__":
