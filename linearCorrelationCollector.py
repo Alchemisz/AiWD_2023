@@ -34,6 +34,8 @@ class LinearCorrelationCollector:
         fig, ax = plt.subplots()
         im = ax.imshow(self.correlation_variable_stairs)
 
+
+
         # Show all ticks and label them with the respective list entries
         ax.set_xticks(np.arange(len(self.correlation_variable_stairs)), labels=column_names)
         ax.set_yticks(np.arange(len(self.correlation_variable_stairs)), labels=column_names)
@@ -49,5 +51,5 @@ class LinearCorrelationCollector:
                                ha="center", va="center", color="w")
 
         ax.set_title("Wykres korelacji")
-        fig.tight_layout()
+        # fig.tight_layout()
         plt.show()

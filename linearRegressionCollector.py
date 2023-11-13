@@ -27,4 +27,6 @@ class LinearRegressionCollector:
             y_variable_difference = data_set[instance_index][y_index] - self.avg_variable_values[y_index]
             square_sum += pow(x_variable_difference, 2)
             sum += x_variable_difference * y_variable_difference
+
+            square_sum = 0.001 if square_sum == 0.0 else square_sum  # TODO
         return round(sum / square_sum, 3)
