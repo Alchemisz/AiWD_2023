@@ -85,6 +85,7 @@ def main():
     print("---------------------6---------------------")
     linear_regression_collector = LinearRegressionCollector(base_statistic_collector.avg_variable_values)
     linear_regression_collector.calculate_linear_regression(data_set)
+    linear_regression_collector.show_plot(column_names)
 
     for instance_index in linear_regression_collector.linear_regression_coefficient_variable_stairs:
         for element in instance_index:

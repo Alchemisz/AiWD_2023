@@ -10,4 +10,4 @@ class LinearRegressionCoefficient:
         return False
 
     def __str__(self):
-        return '[a = ' + str(self.a) + ', b = ' + str(self.b) + ']'
+        return '[' + str(self.a) + ', ' + str(self.b) + ']'

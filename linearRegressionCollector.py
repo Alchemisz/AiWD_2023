@@ -1,3 +1,6 @@
+import numpy as np
+from matplotlib import pyplot as plt
+
 from linearRegressionCoefficient import LinearRegressionCoefficient
 
 
@@ -12,7 +15,8 @@ class LinearRegressionCollector:
         instances_count: int = len(data_set)
         for i in range(variables_count):
             linear_regression_variable_coefficients = []
-            for j in range(i, variables_count, 1):
+            # for j in range(i, variables_count, 1):
+            for j in range(variables_count):
                 regression_coefficient = self.__calculate_regression_coefficients(data_set, i, j, instances_count)
                 free_word = data_set[0][j] - (regression_coefficient * data_set[0][i])
                 linear_regression_variable_coefficients.append(
@@ -30,3 +34,28 @@ class LinearRegressionCollector:
 
             square_sum = 0.001 if square_sum == 0.0 else square_sum  # TODO
         return round(sum / square_sum, 3)
+
+    def show_plot(self, column_names: list[str]):
+        fig, ax = plt.subplots()
+        im = ax.imshow(np.random.randint(1, 5, size=(len(column_names), len(column_names))))
+
+
+
+        # Show all ticks and label them with the respective list entries
+        ax.set_xticks(np.arange(len(self.linear_regression_coefficient_variable_stairs)), labels=column_names)
+        ax.set_yticks(np.arange(len(self.linear_regression_coefficient_variable_stairs)), labels=column_names)
+
+        # Rotate the tick labels and set their alignment.
+        plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
+                 rotation_mode="anchor")
+
+        # Loop over data dimensions and create text annotations.
+        for i in range(len(self.linear_regression_coefficient_variable_stairs)):
+            for j in range(len(self.linear_regression_coefficient_variable_stairs)):
+                text = ax.text(j, i, self.linear_regression_coefficient_variable_stairs[i][j],
+                               ha="center", va="center", color="w")
+
+        ax.set_title("Wykres korelacji")
+        # fig.tight_layout()
+        plt.show()
+
