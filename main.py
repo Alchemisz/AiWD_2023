@@ -16,7 +16,7 @@ ALCOHOL_VARIABLE_INDEX: int = 1
 
 
 def main():
-    file = open('wine.csv')
+    file = open('statystyka.csv')
     type(file)
 
     csv_reader = csv.reader(file, delimiter=',')
