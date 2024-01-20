@@ -10,7 +10,7 @@ class HistogramPlotService:
 
         fig, ax = plt.subplots()
         ax.hist(variable_values)
-        plt.title('Liczba win w zależności od typu')
+        plt.title('Liczba grzybów w zależności od typu kapelusza')
 
     def show_plot(self):
         plt.show()

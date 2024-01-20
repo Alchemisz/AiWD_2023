@@ -13,10 +13,11 @@ from quantileCollector import QuartileCollector
 # WINES
 WINE_TYPE_VARIABLE_INDEX: int = 0
 ALCOHOL_VARIABLE_INDEX: int = 1
+CAP_SHAPE: int = 1
 
 
 def main():
-    file = open('statystyka.csv')
+    file = open('grzybki.csv')
     type(file)
 
     csv_reader = csv.reader(file, delimiter=',')
@@ -69,7 +70,7 @@ def main():
     )
     distant_points_collector.calculate_distant_point(data_set)
     for instance_index in distant_points_collector.distantPointVariableValues:
-        print(instance_index)
+        print(len(instance_index))
 
     print("---------------------4--------------------- CORRELATION")
     linear_correlation_collector = LinearCorrelationCollector(
@@ -93,7 +94,7 @@ def main():
         print()
 
     print("---------------------HISTOGRAM---------------------")
-    histogram_plot_service = HistogramPlotService(data_set, WINE_TYPE_VARIABLE_INDEX)
+    histogram_plot_service = HistogramPlotService(data_set, CAP_SHAPE)
     histogram_plot_service.show_plot()
 
     print("---------------------BOX PLOT---------------------")

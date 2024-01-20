@@ -26,9 +26,9 @@ class BoxPlotService:
         plt.boxplot(plot_data_set, vert=True)
 
         # Dodawanie tytułu i etykiet na osiach
-        plt.title("Wykres pudełkowy dla zmiennych: Typ wina i alkohol")
-        plt.ylabel("Alkohol")
-        plt.xlabel("Typ wina")
+        plt.title("Wykres pudełkowy dla zmiennych: Trujący i kształt kapelusza")
+        plt.xlabel("Trujący")
+        plt.ylabel("Kształt kapelusza")
 
     def show_plot(self):
         plt.show()

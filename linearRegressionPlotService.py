@@ -7,7 +7,7 @@ from linearRegressionCoefficient import LinearRegressionCoefficient
 class LinearRegressionPlotService:
 
     def __init__(self, data_set, variable_x_index: int, variable_y_index: int, linear_regression_coeeficient: LinearRegressionCoefficient):
-        x = np.linspace(1, 3, len(data_set))
+        x = np.linspace(1, 2, len(data_set))
         y = []
         for instance_index in data_set:
             y.append(instance_index[variable_y_index])
@@ -19,6 +19,8 @@ class LinearRegressionPlotService:
         fig, ax = plt.subplots()
         ax.plot(x, y_est, '-')
         ax.plot(x, y, 'o', color='tab:brown')
+        plt.xlabel("Trujący")
+        plt.ylabel("Kształt kapelusza")
 
     def show_plot(self):
         plt.show()

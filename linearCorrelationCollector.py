@@ -10,9 +10,8 @@ class LinearCorrelationCollector:
         self.correlation_variable_stairs = []
 
     def calculate_linear_correlation(self, data_set):
-        variables_count: int = len(data_set[0])  # with class
+        variables_count: int = len(data_set[0])
         instances_count: int = len(data_set)
-        # for j in range(i, variables_count, 1): stairs
         for i in range(variables_count):
             correlation_variable_values = []
             for j in range(variables_count):
@@ -34,22 +33,16 @@ class LinearCorrelationCollector:
         fig, ax = plt.subplots()
         im = ax.imshow(self.correlation_variable_stairs)
 
-
-
-        # Show all ticks and label them with the respective list entries
         ax.set_xticks(np.arange(len(self.correlation_variable_stairs)), labels=column_names)
         ax.set_yticks(np.arange(len(self.correlation_variable_stairs)), labels=column_names)
 
-        # Rotate the tick labels and set their alignment.
         plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
                  rotation_mode="anchor")
 
-        # Loop over data dimensions and create text annotations.
         for i in range(len(self.correlation_variable_stairs)):
             for j in range(len(self.correlation_variable_stairs)):
                 text = ax.text(j, i, self.correlation_variable_stairs[i][j],
                                ha="center", va="center", color="w")
 
-        ax.set_title("Wykres korelacji")
-        # fig.tight_layout()
+        ax.set_title("Wartości współczynnika korelacji")
         plt.show()
